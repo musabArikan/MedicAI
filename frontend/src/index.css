@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #5f6fff;
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.border-primary {
+  border-color: var(--primary);
+}
+.text-primary {
+  color: var(--primary);
+}
+
+.active hr {
+  @apply block;
+}
+
+::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.grid-cols-auto {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+@media (max-width: 740px) {
+  .active p {
+    background-color: var(--primary);
+    color: white;
+  }
+}
