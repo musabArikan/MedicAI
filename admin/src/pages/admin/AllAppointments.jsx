@@ -65,7 +65,7 @@ const AllAppointments = () => {
             ) : (
               <button
                 onClick={() => cancelAppointment(item._id)}
-                className="w-24 py-2 bg-red-100/30 text-red-500 rounded-lg font-semibold hover:bg-red-200 transition cursor-pointer"
+                className="w-16 text-xs py-2 bg-red-100/30 text-red-500 rounded-lg font-semibold hover:bg-red-200 transition cursor-pointer"
               >
                 Cancel
               </button>

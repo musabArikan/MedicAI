@@ -80,12 +80,14 @@ const Dashboard = () => {
                     Completed
                   </p>
                 ) : (
-                  <img
-                    onClick={() => cancelAppointment(item._id)}
-                    className="w-10 cursor-pointer"
-                    src={assets.cancel_icon}
-                    alt=""
-                  />
+                  <div>
+                    <button
+                      onClick={() => cancelAppointment(item._id)}
+                      className="w-15 text-xs py-2 bg-red-100/30 text-red-500 rounded-lg font-semibold hover:bg-red-200 transition cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 )}
               </div>
             ))}

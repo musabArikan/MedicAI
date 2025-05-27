@@ -21,7 +21,7 @@ const DoctorAppointments = () => {
     <div className="w-full maw-w-6xl m-5">
       <p className="mb-3 text-lg font-medium">All Appointments</p>
       <div className="bg-white border border-gray-200 rounded text-sm max-h-[80vh] min-h-[50vh] overflow-y-scroll">
-        <div className="max-sm:hidden grid grid-cols-[0.5fr_2fr_1fr_2fr_1fr_1fr] gap-1 py-3 px-6 border-b border-gray-200">
+        <div className="max-sm:hidden grid grid-cols-[0.5fr_2fr_1fr_2fr_1fr_2fr] gap-1 py-3 px-6 border-b border-gray-200">
           <p>#</p>
           <p>Patient</p>
           <p>Age</p>
@@ -32,7 +32,7 @@ const DoctorAppointments = () => {
         {appointments.reverse().map((item, index) => (
           <div
             className="flex flex-wrap justify-between max-sm:gap-5 max-sm:text-base sm:grid 
-            grid-cols-[0.5fr_2fr_1fr_2fr_1fr_1fr] gap-1 text-gray-500 items-center py-3 px-6 border-b border-gray-200 hover:bg-gray-50"
+            grid-cols-[0.5fr_2fr_1fr_2fr_1fr_2fr] gap-1 text-gray-500 items-center py-3 px-6 border-b border-gray-200 hover:bg-gray-50"
             key={index}
           >
             <p className="max-sm:hidden">{index + 1}</p>
@@ -59,13 +59,13 @@ const DoctorAppointments = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() => cancelAppointment(item._id)}
-                  className="w-24 py-2 bg-red-100/30 text-red-500 rounded-lg font-semibold hover:bg-red-200 transition cursor-pointer"
+                  className="w-15 text-xs py-2 bg-red-100/30 text-red-500 rounded-lg font-semibold hover:bg-red-200 transition cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={() => completeAppointment(item._id)}
-                  className="w-24 py-2 bg-green-100/30 text-green-600 rounded-lg font-semibold hover:bg-green-200 transition cursor-pointer"
+                  className="w-18 text-xs py-2 bg-green-100/30 text-green-600 rounded-lg font-semibold hover:bg-green-200 transition cursor-pointer"
                 >
                   Completed
                 </button>
