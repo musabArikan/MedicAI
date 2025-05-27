@@ -38,6 +38,7 @@ const AssistantWidget = () => {
             setTimeout(() => {
               setOpen(false);
               navigate(route);
+              setTimeout(() => window.scrollTo(0, 0), 100);
             }, 2000);
           }
         }
@@ -83,7 +84,7 @@ const AssistantWidget = () => {
               You can also write in Turkish.
             </p>
             <textarea
-              className="w-full border rounded p-2 mt-2 text-sm min-h-[60px]"
+              className="w-full border rounded p-2 mt-2 text-sm min-h-[60px] focus:outline-[#5f6fff] resize-none"
               placeholder="For example: I have a headache, fever... / Karın ağrım var, ateşim yükseldi..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
