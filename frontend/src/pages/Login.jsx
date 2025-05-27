@@ -8,6 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [state, setState] = useState("Login");
+
   const [email, setEmail] = useState("tester@medicai.com");
   const [password, setPassword] = useState("12345678");
   const [name, setName] = useState("");

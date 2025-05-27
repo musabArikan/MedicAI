@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { DoctorContext } from "../context/DoctorContext";
 const Login = () => {
   const [state, setState] = useState("Hospital");
+
   const [email, setEmail] = useState("admin@medicai.com");
   const [password, setPassword] = useState("admin123");
 
