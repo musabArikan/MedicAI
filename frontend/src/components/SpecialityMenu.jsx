@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { specialityData } from "../assets/assets";
 import { Link } from "react-router-dom";
 import assistantIcon from "../assets/assistant_icon.png";
-import AssistantWidget from "./AssistantWidget";
+import { useAssistant } from "../context/AssistantContext";
 
 const SpecialityMenu = () => {
-  const [open, setOpen] = useState(false);
+  const { setAssistantOpen } = useAssistant();
   return (
     <div
       className="flex flex-col items-center gap-4 py-16 text-gray-800 "
@@ -16,7 +16,7 @@ const SpecialityMenu = () => {
       </h1>
       <button
         className="bg-gradient-to-br from-primary to-blue-400 rounded-full shadow-lg p-2 hover:scale-110 transition-all border border-gray-200"
-        onClick={() => setOpen(true)}
+        onClick={() => setAssistantOpen(true)}
         aria-label="Open AI Assistant"
       >
         <img
@@ -25,7 +25,6 @@ const SpecialityMenu = () => {
           className="w-17 h-17 bg-white rounded-full"
         />
       </button>
-      {open && <AssistantWidget open={open} setOpen={setOpen} />}
       <p className="sm:w-1/3 text-center text-sm">
         Describe your symptoms to our AI assistant or browse the list to quickly
         find the right doctor for your needs.
