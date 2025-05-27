@@ -7,9 +7,9 @@ const Login = () => {
   const { backendUrl, token, setToken } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const [state, setState] = useState("Sign Up");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [state, setState] = useState("Login");
+  const [email, setEmail] = useState("tester@medicai.com");
+  const [password, setPassword] = useState("12345678");
   const [name, setName] = useState("");
 
   const onSubmitHandler = async (event) => {

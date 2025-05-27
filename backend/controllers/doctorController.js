@@ -73,8 +73,6 @@ const appointmentsDoctor = async (req, res) => {
   try {
     const docId = req.docId;
 
-    console.log(docId, "xx");
-
     const appointments = await appointmentModel.find({ docId: docId });
 
     res.json({

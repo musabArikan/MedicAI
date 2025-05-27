@@ -11,22 +11,28 @@ import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ToastContainer, toast } from "react-toastify";
+import AssistantWidget from "./components/AssistantWidget";
+
 const App = () => {
   return (
-    <div className="mx-4 sm:mx-[10%]">
-      <ToastContainer />
+    <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/doctors" element={<Doctors />} />
-        <Route path="/doctors/:specialty" element={<Doctors />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/my-profile" element={<MyProfile />} />
-        <Route path="/my-appointments" element={<MyAppointments />} />
-        <Route path="/appointment/:docId" element={<Appointment />} />
-      </Routes>
+
+      <div className="mx-4 sm:mx-[10%]">
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/doctors/:specialty" element={<Doctors />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/my-profile" element={<MyProfile />} />
+          <Route path="/my-appointments" element={<MyAppointments />} />
+          <Route path="/appointment/:docId" element={<Appointment />} />
+        </Routes>
+      </div>
+      <AssistantWidget />
       <Footer />
     </div>
   );

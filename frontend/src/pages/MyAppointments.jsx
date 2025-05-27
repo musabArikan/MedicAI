@@ -102,14 +102,12 @@ const MyAppointments = () => {
             </div>
             <div></div>
             <div className="flex flex-col justify-end gap-2">
-              {/* Ödeme butonu */}
               {!item.cancelled && !item.isCompleted && (
                 <button className="text-sm text-stone-500 text-center sm:min-w-49 py-2 border rounded border-gray-300 hover:bg-[#5f6fff] hover:text-white transition-all duration-300 cursor-pointer">
                   Pay Online
                 </button>
               )}
 
-              {/* İptal butonu */}
               {!item.cancelled && !item.isCompleted && (
                 <button
                   onClick={() => cancelAppointment(item._id)}
@@ -119,14 +117,12 @@ const MyAppointments = () => {
                 </button>
               )}
 
-              {/* İptal edilmiş randevu */}
               {item.cancelled && (
                 <button className="sm:min-w-48 py-2 border border-red-500 rounded text-red-500">
                   Appointment Cancelled
                 </button>
               )}
 
-              {/* Tamamlanmış randevu */}
               {item.isCompleted && !item.cancelled && (
                 <button className="sm:min-w-48 py-2 border border-green-500 rounded text-green-500">
                   Completed

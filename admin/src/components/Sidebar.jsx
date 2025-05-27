@@ -7,7 +7,7 @@ const Sidebar = () => {
   const { aToken } = useContext(AdminContext);
   const { dToken } = useContext(DoctorContext);
   return (
-    <div className="min-h-screen bg-white border-r border-gray-300 ">
+    <div className="min-h-screen bg-white border-r border-gray-300  max-sm:min-w-11">
       {aToken && (
         <ul className="text-[#515151] mt-5 ">
           <NavLink

@@ -48,10 +48,10 @@ const DoctorProfile = () => {
   return (
     profileData && (
       <div>
-        <div className="flex flex-col gap-4 m-5">
-          <div>
+        <div className="flex max-sm:flex-col gap-4 m-5">
+          <div className="md:flex">
             <img
-              className="bg-primary  w-full sm:max-w-64 rounded-lg"
+              className="bg-primary object-cover  w-full sm:max-w-64 rounded-lg"
               src={profileData.image}
               alt=""
             />
@@ -92,6 +92,8 @@ const DoctorProfile = () => {
                       }))
                     }
                     value={profileData.fees}
+                    className="border border-[#5f6fff] rounded px-2 py-1 w-28 focus:outline-none focus:ring-2 focus:ring-[#5f6fff] bg-[#f5f7ff] placeholder-[#b3bbff] text-[#2d3380] transition"
+                    placeholder="Fee"
                   />
                 ) : (
                   profileData.fees
@@ -112,6 +114,8 @@ const DoctorProfile = () => {
                       }))
                     }
                     value={profileData.address.line1}
+                    className="border border-[#5f6fff] rounded px-2 py-1 w-56 mb-1 focus:outline-none focus:ring-2 focus:ring-[#5f6fff] bg-[#f5f7ff] placeholder-[#b3bbff] text-[#2d3380] transition"
+                    placeholder="Address line 1"
                   />
                 ) : (
                   profileData.address.line1
@@ -128,6 +132,8 @@ const DoctorProfile = () => {
                       }))
                     }
                     value={profileData.address.line2}
+                    className="border border-[#5f6fff] rounded px-2 py-1 w-56 focus:outline-none focus:ring-2 focus:ring-[#5f6fff] bg-[#f5f7ff] placeholder-[#b3bbff] text-[#2d3380] transition"
+                    placeholder="Address line 2"
                   />
                 ) : (
                   profileData.address.line2

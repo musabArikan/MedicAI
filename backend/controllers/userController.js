@@ -83,7 +83,7 @@ const updateProfile = async (req, res) => {
   try {
     const { name, phone, address, dob, gender } = req.body;
     const imageFile = req.file;
-    const userId = req.userId; // req.body.userId yerine req.userId kullanılıyor
+    const userId = req.userId;
 
     if (!name || !phone || !dob || !gender) {
       return res.json({
@@ -123,7 +123,7 @@ const updateProfile = async (req, res) => {
 const bookAppointment = async (req, res) => {
   try {
     const { docId, slotDate, slotTime } = req.body;
-    const userId = req.userId; // userId'yi middleware'den al
+    const userId = req.userId;
 
     if (!userId) {
       return res.status(400).json({
@@ -202,7 +202,7 @@ const bookAppointment = async (req, res) => {
 
 const listAppointment = async (req, res) => {
   try {
-    const userId = req.userId; // Middleware'den alınan userId
+    const userId = req.userId;
     if (!userId) {
       return res.status(400).json({
         success: false,
@@ -223,10 +223,10 @@ const listAppointment = async (req, res) => {
 
 const cancelAppointment = async (req, res) => {
   try {
-    const userId = req.userId; // Middleware'den alınan userId
+    const userId = req.userId;
+    userId;
     const { appointmentId } = req.body;
 
-    // Randevuyu bul
     const appointmentData = await appointmentModel.findById(appointmentId);
     if (!appointmentData) {
       return res.status(404).json({
@@ -235,7 +235,6 @@ const cancelAppointment = async (req, res) => {
       });
     }
 
-    // Kullanıcının yetkili olup olmadığını kontrol et
     if (appointmentData.userId.toString() !== userId) {
       return res.status(403).json({
         success: false,
@@ -243,12 +242,10 @@ const cancelAppointment = async (req, res) => {
       });
     }
 
-    // Randevuyu iptal et
     await appointmentModel.findByIdAndUpdate(appointmentId, {
       cancelled: true,
     });
 
-    // Doktorun slots_booked alanını güncelle
     const { docId, slotDate, slotTime } = appointmentData;
     const doctorData = await doctorModel.findById(docId);
     if (doctorData) {

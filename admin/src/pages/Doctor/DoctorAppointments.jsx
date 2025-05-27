@@ -56,19 +56,19 @@ const DoctorAppointments = () => {
             ) : item.isCompleted ? (
               <p className="text-green-500 text-xs font-medium">Completed</p>
             ) : (
-              <div className="flex ">
-                <img
+              <div className="flex gap-2">
+                <button
                   onClick={() => cancelAppointment(item._id)}
-                  className="w-10 cursor-pointer"
-                  src={assets.cancel_icon}
-                  alt=""
-                />
-                <img
+                  className="w-24 py-2 bg-red-100/30 text-red-500 rounded-lg font-semibold hover:bg-red-200 transition cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
                   onClick={() => completeAppointment(item._id)}
-                  className="w-10 cursor-pointer"
-                  src={assets.tick_icon}
-                  alt=""
-                />
+                  className="w-24 py-2 bg-green-100/30 text-green-600 rounded-lg font-semibold hover:bg-green-200 transition cursor-pointer"
+                >
+                  Completed
+                </button>
               </div>
             )}
           </div>

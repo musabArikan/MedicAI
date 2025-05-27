@@ -16,14 +16,18 @@ const Navbar = () => {
   };
   return (
     <div className="flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white border-gray-300">
-      <div className="flex items-center gap-2 text-xs">
+      <div
+        className={`${
+          aToken ? "w-full flex-wrap" : ""
+        } flex items-center gap-2 text-xs `}
+      >
         <img
           className="w-36 sm:w-40 max-h-12 object-cover curso-pointer"
           src={assets.admin_logo}
           alt=""
         />
-        <p className="border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600">
-          {aToken ? "Admin" : "Doctor"}
+        <p className="border px-2.5 py-1 rounded-full border-gray-500 text-gray-600">
+          {aToken ? "Hospital Management " : "Doctor"}
         </p>
       </div>
       <button

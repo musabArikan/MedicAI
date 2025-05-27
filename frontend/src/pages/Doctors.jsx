@@ -36,7 +36,7 @@ const Doctors = () => {
           }`}
         >
           <p
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer      ${
+            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer  text-nowrap    ${
               specialty === "General physician"
                 ? "bg-indigo-100 text-black "
                 : ""
@@ -96,20 +96,6 @@ const Doctors = () => {
             }
           >
             Neurologist
-          </p>
-          <p
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer      ${
-              specialty === "Gastroenterologist"
-                ? "bg-indigo-100 text-black "
-                : ""
-            } `}
-            onClick={() =>
-              specialty === "Gastroenterologist"
-                ? navigate("/doctors")
-                : navigate("/doctors/Gastroenterologist")
-            }
-          >
-            Gastroenterologist
           </p>
         </div>
         <div className="w-full grid grid-cols-auto gap-4 pt-5 gap-y-6  ">

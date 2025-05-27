@@ -6,6 +6,8 @@ import connectCloudinary from "./config/cloudinary.js";
 import adminRouter from "./routers/adminRoute.js";
 import doctorRouter from "./routers/doctorRoute.js";
 import userRouter from "./routers/userRoute.js";
+import aiRouter from "./routers/aiRoute.js";
+
 // app config
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -20,5 +22,5 @@ app.use(cors());
 app.use("/api/admin", adminRouter);
 app.use("/api/doctor", doctorRouter);
 app.use("/api/user", userRouter);
-
+app.use("/api/ai", aiRouter);
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

@@ -49,7 +49,6 @@ const Appointment = () => {
           minute: "2-digit",
         });
 
-        // Kontrol: Slot zaten dolu mu?
         if (
           !docInfo.slots_booked ||
           !docInfo.slots_booked[
@@ -191,7 +190,7 @@ const Appointment = () => {
                   className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
                     item.time === slotTime
                       ? "bg-primary text-white"
-                      : " text-gray-400 border border-gray-300"
+                      : " font-semibold!  border border-gray-300"
                   }`}
                   key={index}
                 >

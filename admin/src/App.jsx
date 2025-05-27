@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { AdminContext } from "./context/AdminContext";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Dashboard from "./pages/admin/Dashboard";
 import AllAppointments from "./pages/admin/AllAppointments";
 import AddDoctor from "./pages/admin/AddDoctor";
@@ -13,10 +13,25 @@ import { DoctorContext } from "./context/DoctorContext";
 import DoctorDashboard from "./pages/Doctor/DoctorDashboard";
 import DoctorAppointments from "./pages/Doctor/DoctorAppointments";
 import DoctorProfile from "./pages/Doctor/DoctorProfile";
+import { useEffect } from "react";
 
 const App = () => {
   const { aToken } = useContext(AdminContext);
   const { dToken } = useContext(DoctorContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (aToken && location.pathname === "/") {
+      navigate("/all-appointments?from=home", { replace: true });
+    }
+  }, [aToken, location.pathname, navigate]);
+  useEffect(() => {
+    if (dToken && location.pathname === "/") {
+      navigate("/doctor-appointments?from=home", { replace: true });
+    }
+  }, [dToken, location.pathname, navigate]);
+
   return aToken || dToken ? (
     <div className="bg-[#F8F9FD] ">
       <ToastContainer />
@@ -24,7 +39,6 @@ const App = () => {
       <div className="flex items-start">
         <Sidebar />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
           <Route path="/admin-dashboard" element={<Dashboard />} />
           <Route path="/all-appointments" element={<AllAppointments />} />
           <Route path="/add-doctor" element={<AddDoctor />} />
