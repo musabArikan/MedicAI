@@ -33,7 +33,7 @@ const Navbar = () => {
       >
         Hospital M.
       </a>
-      <ul className="hidden flex-1 justify-center md:flex items-start gap-5 font-medium">
+      <ul className="hidden flex-1 justify-center md:flex items-center gap-5 font-medium">
         <NavLink
           to={"/"}
           onClick={() => {
