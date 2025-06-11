@@ -81,7 +81,7 @@ const AssistantWidget = () => {
     <>
       {!assistantOpen && (
         <button
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-br from-primary to-blue-400 rounded-full shadow-lg p-3  hover:scale-110 transition-all border border-gray-200 animate-pulse-assistant"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-br from-primary to-blue-400 rounded-full shadow-lg p-3  hover:scale-110 transition-all cursor-pointer border border-gray-200 animate-pulse-assistant"
           onClick={() => setAssistantOpen(true)}
           aria-label="Open AI Assistant"
         >

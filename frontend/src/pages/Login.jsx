@@ -96,7 +96,7 @@ const Login = () => {
         </div>
         <button
           type="submit"
-          className="bg-primary text-white w-full py-2 rounded-md text-base mt-2 font-semibold"
+          className="bg-primary text-white w-full py-2 rounded-md text-base mt-2 font-semibold cursor-pointer"
         >
           {state === "Sign Up" ? "Create Account" : "Login"}
         </button>

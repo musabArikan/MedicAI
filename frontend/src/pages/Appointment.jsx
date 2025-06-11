@@ -16,6 +16,7 @@ const Appointment = () => {
   const [docSlots, setDocSlots] = useState([]);
   const [slotIndex, setSlotIndex] = useState(0);
   const [slotTime, setSlotTime] = useState("");
+  const [booking, setBooking] = useState(false);
 
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
@@ -72,15 +73,15 @@ const Appointment = () => {
   const bookAppointment = async () => {
     if (!token) {
       toast.warn("Please login to book an appointment");
+      scrollTo(0, 0);
       return navigate("/login");
     }
-
+    setBooking(true);
     try {
       const date = docSlots[slotIndex][0].datetime;
       let day = date.getDate();
       let month = date.getMonth() + 1;
       let year = date.getFullYear();
-
       const slotDate = `${day}_${month}_${year}`;
       const { data } = await axios.post(
         `${backendUrl}/api/user/book-appointment`,
@@ -104,6 +105,7 @@ const Appointment = () => {
       console.log(error);
       toast.error(error.message);
     }
+    setBooking(false);
   };
 
   useEffect(() => {
@@ -186,11 +188,17 @@ const Appointment = () => {
             {docSlots.length &&
               docSlots[slotIndex].map((item, index) => (
                 <p
-                  onClick={() => setSlotTime(item.time)}
-                  className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
+                  onClick={() => {
+                    if (!booking) setSlotTime(item.time);
+                  }}
+                  className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full ${
                     item.time === slotTime
                       ? "bg-primary text-white"
                       : " font-semibold!  border border-gray-300"
+                  } ${
+                    booking
+                      ? "pointer-events-none opacity-50 cursor-not-allowed"
+                      : "cursor-pointer"
                   }`}
                   key={index}
                 >
@@ -201,9 +209,12 @@ const Appointment = () => {
 
           <button
             onClick={bookAppointment}
-            className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6 cursor-pointer"
+            className={`bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6 cursor-pointer transition-opacity duration-200 ${
+              booking ? "opacity-60 cursor-not-allowed" : ""
+            }`}
+            disabled={booking}
           >
-            Book an appointment
+            {booking ? "Booking..." : "Book an appointment"}
           </button>
         </div>
 

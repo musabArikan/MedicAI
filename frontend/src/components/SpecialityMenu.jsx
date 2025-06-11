@@ -15,7 +15,7 @@ const SpecialityMenu = () => {
         Find Your <span> Specialist with AI</span>
       </h1>
       <button
-        className="bg-gradient-to-br from-primary to-blue-400 rounded-full shadow-lg p-2 hover:scale-110 transition-all border border-gray-200"
+        className="bg-gradient-to-br from-primary to-blue-400 rounded-full shadow-lg p-2 hover:scale-110 transition-all border border-gray-200 cursor-pointer"
         onClick={() => setAssistantOpen(true)}
         aria-label="Open AI Assistant"
       >
