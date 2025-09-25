@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center sticky bg-white z-30 top-0 justify-between text-sm py-4 pr-4 mb-5 max-sm:h-18 md:mx-[10%]">
+    <div className="flex items-center sticky bg-white z-30 top-0 justify-between text-sm py-4 pr-4 mb-5 max-sm:h-18 md:px-[10%]">
       <Link to="/">
         <img
           className="w-44 max-sm:w-38 max-h-12 object-cover cursor-pointer"

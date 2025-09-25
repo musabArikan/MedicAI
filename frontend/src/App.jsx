@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Doctors from "./pages/Doctors";
@@ -10,17 +10,26 @@ import MyAppointments from "./pages/MyAppointments";
 import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { ToastContainer, toast } from "react-toastify";
-import AssistantWidget from "./components/AssistantWidget";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingScreen from "./components/LoadingScreen";
 import { AssistantProvider } from "./context/AssistantContext";
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <AssistantProvider>
-      <div>
+      <>
+        <ToastContainer />
+        {loading && <LoadingScreen />}
         <Navbar />
         <div className="mx-4 sm:mx-[10%]">
-          <ToastContainer />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/doctors" element={<Doctors />} />
@@ -33,9 +42,8 @@ const App = () => {
             <Route path="/appointment/:docId" element={<Appointment />} />
           </Routes>
         </div>
-        <AssistantWidget />
         <Footer />
-      </div>
+      </>
     </AssistantProvider>
   );
 };

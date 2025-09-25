@@ -17,11 +17,11 @@ const AppContextProvider = ({ children }) => {
       if (data.success) {
         setDoctors(data.doctors);
       } else {
-        toast.error(data.message);
+        toast.error(data.message || "Failed to fetch doctors.");
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+      console.log("Error fetching doctors:", error);
+      toast.error(error.message || "An error occurred while fetching doctors.");
     }
   };
   const loadUserProfileData = async () => {
@@ -32,12 +32,42 @@ const AppContextProvider = ({ children }) => {
       if (data.success) {
         setUserData(data.userData);
       } else {
-        console.log(error);
-
-        toast.error(data.message);
+        console.log("Error loading user profile:", data.message);
+        toast.error(data.message || "Failed to load user profile.");
       }
     } catch (error) {}
   };
+
+  const autoLogin = async () => {
+    if (!localStorage.getItem("token")) {
+      try {
+        const { data } = await axios.post(`${backendUrl}/api/user/login`, {
+          email: "tester@medicai.com",
+          password: "12345678",
+        });
+        if (data.success && data.token) {
+          setToken(data.token);
+          localStorage.setItem("token", data.token);
+        }
+      } catch (err) {
+        toast.error("Demo user login failed.");
+      }
+    }
+  };
+
+  useEffect(() => {
+    getDoctorsData();
+    autoLogin();
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      loadUserProfileData();
+    } else {
+      setUserData(false);
+    }
+  }, [token]);
+
   const value = {
     doctors,
     getDoctorsData,
@@ -48,17 +78,8 @@ const AppContextProvider = ({ children }) => {
     userData,
     setUserData,
     loadUserProfileData,
+    autoLogin,
   };
-  useEffect(() => {
-    getDoctorsData();
-  }, []);
-  useEffect(() => {
-    if (token) {
-      loadUserProfileData();
-    } else {
-      setUserData(false);
-    }
-  }, [token]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

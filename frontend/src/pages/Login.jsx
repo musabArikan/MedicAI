@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState("tester@medicai.com");
   const [password, setPassword] = useState("12345678");
   const [name, setName] = useState("");
+  const [autoLoginTried, setAutoLoginTried] = useState(false);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -26,8 +27,11 @@ const Login = () => {
         if (data.success) {
           setToken(data.token);
           localStorage.setItem("token", data.token);
+          localStorage.removeItem("autoLoginDisabled");
+          toast.success("Successfully registered and logged in!");
+          navigate("/");
         } else {
-          toast.error(data.message);
+          toast.error(data.message || "Registration failed.");
         }
       } else {
         const { data } = await axios.post(`${backendUrl}/api/user/login`, {
@@ -37,20 +41,31 @@ const Login = () => {
         if (data.success) {
           setToken(data.token);
           localStorage.setItem("token", data.token);
+          localStorage.removeItem("autoLoginDisabled");
+          toast.success("Successfully logged in!");
+          navigate("/");
         } else {
-          toast.error(data.message);
+          toast.error(data.message || "Login failed.");
         }
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(
+        error?.response?.data?.message || error.message || "An error occurred."
+      );
     }
   };
 
   useEffect(() => {
-    if (token) {
-      navigate("/");
+    if (!autoLoginTried && !localStorage.getItem("autoLoginDisabled")) {
+      const localToken = localStorage.getItem("token");
+      if (localToken) {
+        setToken(localToken);
+        toast.success("Auto login successful!");
+        navigate("/");
+      }
+      setAutoLoginTried(true);
     }
-  });
+  }, [autoLoginTried, setToken, navigate]);
 
   return (
     <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center">
